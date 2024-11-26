@@ -1,0 +1,21 @@
+{%extends "layout.njk"%}
+{%block content%}
+<main>
+    <h1>{{ title }}</h1>
+    <p>{{ bird.id }}</p>
+    <p>{{ bird.name }}</p>
+    <p>{{ bird.wingspan }}</p>
+    <p>{{ bird.species_id }}</p>
+    {% if bird.name == "anka" %}
+    <img src="./public/img/Amerikanische_Pekingenten_2013_01b.jpg" alt="Anka">
+
+    {% endif %}
+
+    {% if bird.name == "dudo" %}
+    <img src="./public/img/nedladdning.jpg" alt="dudo">
+
+    {% endif %}
+
+
+</main>
+{%endblock%}
