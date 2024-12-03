@@ -1,21 +1,17 @@
 {%extends "layout.njk"%}
 {%block content%}
 <main>
+    <p><a href="/">Gå tillbaka!</a></p>
     <h1>{{ title }}</h1>
-    <p>{{ bird.id }}</p>
-    <p>{{ bird.name }}</p>
-    <p>{{ bird.wingspan }}</p>
-    <p>{{ bird.species_id }}</p>
-    {% if bird.name == "anka" %}
-    <img src="./public/img/Amerikanische_Pekingenten_2013_01b.jpg" alt="Anka">
+    
+    {% for bird in birds %}
+    <h1>{{ bird.id }}. {{ bird.name }}</h1>
+    <p>Wingspan för {{ bird.name }}: {{ bird.wingspan }} CM</p>
+    <p>{{ bird.name }} species id är nr.{{bird.species_id}}. Vilket är en {{bird.species_name}}</p>
+    <h3>Gå till <a href ="/birds/{{ bird.id }}">{{ bird.name }}</a> Sida!</h3>
+   
+    {% endfor %}
 
-    {% endif %}
-
-    {% if bird.name == "dudo" %}
-    <img src="./public/img/nedladdning.jpg" alt="dudo">
-
-    {% endif %}
-
-
+    
 </main>
 {%endblock%}
