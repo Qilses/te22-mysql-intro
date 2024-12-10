@@ -29,6 +29,14 @@ app.get("/", async (req, res) => {
   })
 })
 
+app.post('/species', async (req, res) => {
+  const { name, latin, wingspan_min, wingspan_max } = req.body
+
+  const [result] = await pool.promise().query('INSERT INTO species (name, latin, wingspan_min, wingspan_max) VALUES (?, ?, ?, ?)', [name, latin, wingspan_min, wingspan_max])
+  res.redirect('/species')
+  res.json(result)
+})
+
 app.use("/birds", birdsRouter)
 app.get("/birds", async (req, res) => {
   // const [birds] = await pool.promise().query('SELECT * FROM birds')
@@ -43,7 +51,15 @@ app.get("/birds", async (req, res) => {
     )
     
   res.json(birds)
-})  
+}) 
+
+app.get('/birds/new', async (req, res) => {
+  const [species] = await pool.promise().query('SELECT * FROM species')
+
+  res.render('birds_form.njk', { species })
+})
+
+
 
 app.get("/birds/:id", async (req, res) => {
   const [bird] = await pool
@@ -61,6 +77,11 @@ app.get("/birds/:id", async (req, res) => {
     }) 
   //res.json(bird[0])
  
+})
+app.get('/birds/new', async (req, res) => {
+  const [species] = await pool.promise().query('SELECT * FROM species')
+
+  res.render('birds_form.njk', { species })
 })
 
 app.use((req, res) => {

@@ -6,17 +6,7 @@
     <h2>{{ bird.id }}. {{ bird.name }}</h2>
     <p>Wingspan för {{ bird.name }}: {{ bird.wingspan }} CM</p>
     <p>{{ bird.name }} species id är nr.{{bird.species_id}}. Vilket är en {{bird.species_name}}</p>
-
-    {% if bird.name == "Arvid" %}
-    <img src="./img/Amerikanische_Pekingenten_2013_01b.jpg" alt="Anka"width="500" height="600">
-
-    {% elif bird.name == "Håkan" %}
-    <img src="../img/nedladdning.jpg" alt="Dudo"width="500" height="600">
-
-    {% elif bird.name == "Bengt" %}
-    <img src="../img/8-sparv.jpg" alt="Sparv"width="500" height="600">
-
-    {% endif %}
+    <img src="{{ bird.species_img }}" alt="">
 
 
 </main>
